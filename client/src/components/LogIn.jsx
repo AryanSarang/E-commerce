@@ -13,7 +13,7 @@ const LogIn = () => {
 
     const handleLogIn = async () => {
         console.log(email, password);
-        let result = await fetch("http://localhost:3001/login", {
+        let result = await fetch("/login", {
             method: "post",
             body: JSON.stringify({ email, password }),
             headers: {

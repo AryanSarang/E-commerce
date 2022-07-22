@@ -7,7 +7,7 @@ const Jwt = require('jsonwebtoken');
 const jwtKey = "e-comm";
 var multer = require('multer');
 var fs = require('fs');
-var path = require('path')
+var path = require('path');
 
 const app = express();
 app.use(express.static("uploads"));
@@ -155,7 +155,7 @@ function verifyToken(req, res, next) {
 
 }
 
-__dirname = path.resolve();
+const __dirname = path.resolve();
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "/client/build")));
     app.get("*", (req, res) => {
