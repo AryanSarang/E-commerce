@@ -40,7 +40,7 @@ const AddProduct = () => {
             return (false);
         }
 
-        let result = await fetch("http://localhost:3001/add-product", {
+        let result = await fetch("/add-product", {
             method: "post",
             body: JSON.stringify(product),
             headers: {
