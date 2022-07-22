@@ -13,7 +13,7 @@ const LogIn = () => {
 
     const handleLogIn = async () => {
         console.log(email, password);
-        let result = await fetch("http://localhost:3001/login", {
+        let result = await fetch("https://aryan-e-commerce.herokuapp.com/login", {
             method: "post",
             body: JSON.stringify({ email, password }),
             headers: {
@@ -54,12 +54,6 @@ const LogIn = () => {
                  value={password} label="Password" type="password"
                     variant="standard" />
             </Box>
-            {/* <input className="inputBox" type="email"
-                value={email} onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email" />
-            <input className="inputBox" type="password"
-                value={password} onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password" /> */}
             <button onClick={handleLogIn} className=" signUpBtn btn btn-md btn-primary"
                 type="submit">Log In</button>
                 <br/>
