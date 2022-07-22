@@ -19,7 +19,7 @@ var storage = multer.diskStorage({
         cb(null, 'uploads')
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + "--"  +file.originalname) //Appending extension
+        cb(null, Date.now() + "--" + file.originalname) //Appending extension
     }
 })
 
@@ -98,8 +98,8 @@ app.put("/product/:id", verifyToken, async (req, res) => {
     res.send(result);
 })
 
-app.get("/profile/:id",  (req, res) => {
-    User.findOne({ _id: req.params.id },(err, item) => {
+app.get("/profile/:id", (req, res) => {
+    User.findOne({ _id: req.params.id }, (err, item) => {
         if (err) {
             console.log(err);
             res.status(500).send('An error occurred', err);
@@ -108,10 +108,10 @@ app.get("/profile/:id",  (req, res) => {
             res.send(item.img);
         }
     });
-    
+
 });
 app.put('/profile/:id', upload.single('image'), async (req, res) => {
-    
+
     console.log(req.file);
     let result = await User.updateOne(
         { _id: req.params.id },
@@ -119,7 +119,7 @@ app.put('/profile/:id', upload.single('image'), async (req, res) => {
             img: (req.file) ? req.file.filename : null
         }
     );
-    
+
     res.send("file sent successfully");
 
 });
@@ -155,12 +155,15 @@ function verifyToken(req, res, next) {
 
 }
 
-
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static("client/build"));
+__dirname = path.resolve();
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "/client/build")));
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    });
 }
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, function () {
     console.log("server started at port 3001");
 });
