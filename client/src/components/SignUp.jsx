@@ -22,7 +22,7 @@ const SignUp = () => {
 
     const handleSubmit = async () => {
 
-        let result = await fetch("http://localhost:3001/register", {
+        let result = await fetch("/register", {
             method: "post",
             body: JSON.stringify({ name, email, password }),
             headers: {

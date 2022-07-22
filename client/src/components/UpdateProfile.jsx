@@ -19,11 +19,11 @@ const UpdateProfile = () => {
         getImage();
     }, [])
     const getImage = async () => {
-        let result = await fetch("http://localhost:3001/profile/" + auth._id);
+        let result = await fetch("/profile/" + auth._id);
         result = await result.json();
         console.log(result);
         if (result.length > 1) {
-            setNewSrc("http://localhost:3001/" + result);
+            setNewSrc("/" + result);
         }
     }
 
@@ -37,7 +37,7 @@ const UpdateProfile = () => {
         e.preventDefault();
         const data = new FormData();
         data.append("image", newImage);
-        let result = await fetch("http://localhost:3001/profile/" + params.id, {
+        let result = await fetch("/profile/" + params.id, {
             method: "Put",
             body: data,
 

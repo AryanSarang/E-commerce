@@ -20,12 +20,12 @@ const Profile = () => {
 
 
     const getImage = async () => {
-        let result = await fetch("http://localhost:3001/profile/" + auth._id);
+        let result = await fetch("/profile/" + auth._id);
         result = await result.json();
         console.log(result);
         if(result.length>0)
            { 
-            setNewSrc("http://localhost:3001/" + result);
+            setNewSrc("/" + result);
         }
         
     }

@@ -24,7 +24,7 @@ const UpdateProduct = () => {
 
     const getProductDetails = async () => {
 
-        let result = await fetch("http://localhost:3001/product/" + params.id, {
+        let result = await fetch("/product/" + params.id, {
             headers: {
                 "authorization": `bearer ${JSON.parse(localStorage.getItem("token"))}`
             }
@@ -50,7 +50,7 @@ const UpdateProduct = () => {
     }
 
     const handleSubmit = async () => {
-        let result = await fetch("http://localhost:3001/product/" + params.id, {
+        let result = await fetch("/product/" + params.id, {
             method: "Put",
             body: JSON.stringify(product),
             headers: {
